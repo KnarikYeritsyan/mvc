@@ -22,12 +22,12 @@
             <td>
                 <fieldset>
                     <label for="checkbox-<?php echo $task['id']?>">Done</label>
-                    <input <?php if($task['status'])echo "checked" ?> type="checkbox" class="check-done" name="checkbox-<?php echo $task['id']?>" id="checkbox-<?php echo $task['id']?>">
+                    <input <?php if($task['status'])echo "checked" ?> type="checkbox" class="check-done" name="checkbox-<?php echo $task['id']?>" data-id="<?php echo $task['id']?>" id="checkbox-<?php echo $task['id']?>">
                     <br><span id="check-error<?php echo $task['id']?>" class="text-danger"></span>
                 </fieldset>
             <br><?php echo $task['text_status']?"<span class='fa fa-check'></span>Edited":'' ?>
             </td>
-            <td><button type="button" name='update' class='btn btn-success bt-xs update' data-id="<?php echo $task['id']?>">save</button></td>
+            <td><button type="button" name='update' class='btn btn-success bt-xs update' data-id="<?php echo $task['id']?>">Save</button></td>
         </tr>
     <?php }?>
 </table>
@@ -73,10 +73,10 @@
         return regex.test(email);
     }
     $(document).ready(function(){
-        $(document).on('click','.update',function (e) {
+        $(document).on('change','.check-done',function (e) {
             e.preventDefault();
             var id = $(this).data("id");
-            if($('#checkbox'+id).is(":checked")) {
+            if($('#checkbox-'+id).is(":checked")) {
                 var check =1;
             } else {
                 check =0;
@@ -84,7 +84,7 @@
                 $.ajax({
                     url: "<?php echo URL;?>dashboard/update_check",
                     method: "POST",
-                    data: {id:id,check:check},
+                    data: {id:id,status:check},
                     success: function (data) {
                         if (data) {
                             alert(data);
@@ -98,7 +98,7 @@
                     }
                 })
         });
-        $(document).on('change','.check-done',function (e) {
+        $(document).on('click','.update',function (e) {
             e.preventDefault();
             var id = $(this).data("id");
             var text = $('#text'+id).val();

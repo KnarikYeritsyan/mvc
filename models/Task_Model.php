@@ -45,7 +45,6 @@ class Task_Model extends Model
     }
     public function update_check($data)
     {
-
         $query = $this->db->prepare("UPDATE tasks SET status = :status WHERE id = :id");
         return $query->execute([
             'id' => $data['id'],
