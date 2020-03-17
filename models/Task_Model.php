@@ -27,5 +27,30 @@ class Task_Model extends Model
             'text' => $data['text'],
         ]);
     }
+    public function update($data)
+    {
+        $q = $this->db->prepare("SELECT * FROM tasks WHERE id =" . $data['id']);
+        $q->execute();
+        $task = $q->fetch();
+        if ($task['text'] != $data['text']) {
+            $query = $this->db->prepare("UPDATE tasks SET text_status = 1, text = :text , updated_at = :updated_at WHERE id = :id");
+        }else{
+            $query = $this->db->prepare("UPDATE tasks SET text = :text , updated_at = :updated_at WHERE id = :id");
+        }
+            return $query->execute([
+                'id' => $data['id'],
+                'text' => $data['text'],
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+    }
+    public function update_check($data)
+    {
+
+        $query = $this->db->prepare("UPDATE tasks SET status = :status WHERE id = :id");
+        return $query->execute([
+            'id' => $data['id'],
+            'status' => $data['status'],
+        ]);
+    }
 
 }

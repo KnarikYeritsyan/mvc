@@ -16,7 +16,7 @@
         <td><?php echo $task['name']?></td>
         <td><?php echo $task['email'] ?></td>
         <td><?php echo $task['text']?></td>
-        <td><?php echo $task['status']?"<span class='btn btn-success bt-xs'>Done</span>":'' ?></td>
+        <td><?php echo $task['status']?"<span class='fa fa-check'></span>Done":'' ?></td>
     </tr>
 <?php }?>
 </table>

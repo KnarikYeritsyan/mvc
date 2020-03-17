@@ -4,9 +4,12 @@
 <head>
     <title>Test</title>
     <link rel="stylesheet" type="text/css" href = "<?php echo URL; ?>public/css/default.css" />
-    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.js">    </script>
     <link rel="stylesheet" href = "<?php echo URL; ?>public/bootstrap/css/bootstrap.min.css" />
-    <script type="text/javascript" src="<?php echo URL; ?>public/bootstrap/js/bootstrap.min.js">    </script>
+    <link rel="stylesheet" href = "<?php echo URL; ?>public/bootstrap/css/jquery-ui.css" />
+    <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
