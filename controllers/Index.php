@@ -6,10 +6,28 @@ class Index extends Controller
     function __construct()
     {
         parent::__construct();
+        $this->model= new \Task_Model();
     }
     function index()
     {
-        $this->view->render('index'.DS.'index');
+        $tasks = $this->model->getAllTasks();
+        $this->view->render('index'.DS.'index',compact('tasks'));
     }
-
+    function create()
+    {
+        $data = $this->secure_form($_POST);
+        if (strlen($data['name'])>0 && strlen($data['email'])>0 && strlen($data['text'])>0) {
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+                return $this->response(422,'invalid Email');
+            }else {
+                if ($this->model->create($data)) {
+                    echo 'Task inserted successfully';
+                } else {
+                    return false;
+                }
+            }
+        }else{
+            return $this->response(422,'Fill out required fields');
+        }
+    }
 }

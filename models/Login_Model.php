@@ -8,17 +8,16 @@ class Login_Model extends Model
     public function authenticate($username,$password)
     {
         try {
-            $sth = $this->db->prepare("SELECT * FROM ".DB_TABLE1." WHERE `username` = :username");
-            $sth->execute([
+            $query = $this->db->prepare("SELECT * FROM users WHERE `username` = :username");
+            $query->execute([
                 ':username' => $username,
             ]);
-
         } catch (PDOException $e) {
             return false;
         }
-        $count = $sth->rowCount();
+        $count = $query->rowCount();
         if ($count > 0) {
-            $data = $sth->fetch();
+            $data = $query->fetch();
             if (password_verify($password,$data['password'])) {
                 Session::init();
                 Session::set('user_id', $data['id']);
@@ -33,9 +32,8 @@ class Login_Model extends Model
     }
     public function get_user($id)
     {
-        $sql = "SELECT * FROM users WHERE id =" . $id;
-        $req = $this->db->prepare($sql);
-        $req->execute();
-        return $req->fetch();
+        $query = $this->db->prepare("SELECT * FROM users WHERE id =" . $id);
+        $query->execute();
+        return $query->fetch();
     }
 }
