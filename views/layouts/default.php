@@ -12,12 +12,13 @@
     <div class="container">
         <a class="navbar-brand" href="<?php echo URL; ?>">Home</a>
         <?php if (Session::get('loggedIn')==true):?>
-        <ul class="nav navbar-nav navbar-left">
+            <a class="navbar-brand" href="<?php echo URL; ?>dashboard">Admin</a>
+            <ul class="nav navbar-nav navbar-left">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle"
-                   data-toggle="dropdown">More <b class="caret"></b>
+                   data-toggle="dropdown">Log out<b class="caret"></b>
                     <ul class="dropdown-menu">
-                        <li><a href="<?php echo URL; ?>login/logout">Log out</a></li>
+                        <li><a href="<?php echo URL; ?>dashboard/logout">Log out</a></li>
                     </ul>
                 </a>
             </li>

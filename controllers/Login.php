@@ -16,23 +16,15 @@ class Login extends Controller
     {
         $username = $this->secure_input($_POST['username']);
         $password = $this->secure_input($_POST['password']);
-//        var_dump($this->model->authenticate($username, $password));
         if (strlen($username)>0 && strlen($password)>0) {
             if ($this->model->authenticate($username, $password)) {
                 $data = $this->model->get_user(\Session::get('user_id'));
-//                $this->view->render('index/index',compact('data'));
-                header('location: '.URL);
+                $this->view->render('dashboard/index',compact('data'));
             }else{
-                echo 'no count';
+                return false;
             }
         }else{
-            echo 'no data';
+            return false;
         }
-    }
-    function logout()
-    {
-        \Session::destroy();
-        header('location: '.URL);
-//        exit;
     }
 }

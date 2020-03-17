@@ -25,29 +25,24 @@
         </div>
     </form>
 </div>
-<!--<script>
+<script>
     $(document).ready(function () {
         $('#MyForm').submit(function (event) {
             event.preventDefault();
             var username = $('#username').val();
             var password = $('#password').val();
-                if($('#remember').is(":checked")) {
-                    var remember =1;
-                } else {
-                     remember =0;
-                }
             if ($.trim(username).length > 0 && $.trim(password).length > 0)
             {
                 $.ajax({
-                    url:"<?php /*echo URL; */?>login/run",
+                    url:"<?php echo URL; ?>login/auth",
                     method:"POST",
-                    data:{username:username, password:password, remember:remember},
+                    data:{username:username, password:password},
                     cashe:false,
                     success:function (data) {
                         if (data)
                         {
                             $("body").hide();
-                            window.location.href= "<?php /*echo URL; */?>dashboard";
+                            window.location.href= "<?php echo URL; ?>dashboard";
                         }
                         else
                         {
@@ -55,6 +50,9 @@
                             document.getElementById("username").style.borderColor = "red";
                             document.getElementById("password").style.borderColor = "red";
                         }
+                    },
+                    error:function (data) {
+                        $('#error').html("<span class='text-danger'>Something went wrong</span>");
                     }
                 });
             }
@@ -67,4 +65,4 @@
             }
         });
     });
-</script>-->
+</script>
