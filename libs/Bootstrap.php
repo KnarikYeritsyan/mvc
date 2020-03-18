@@ -13,7 +13,7 @@ class Bootstrap
     {
         $name = $this->request->controller;
         require_once $_SERVER['DOCUMENT_ROOT'].'/controllers/Controller.php';
-        require_once $_SERVER['DOCUMENT_ROOT'].'/controllers/'.$name.'.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].$name.'.php';
         $controller = new $name();
         return $controller;
     }

@@ -6,7 +6,7 @@ class Router
         $url = rtrim(ltrim($url,'/'),'/');
         if ($url == '')
         {
-            $request->controller = "Index";
+            $request->controller = "/controllers/Index";
             $request->action = "index";
             $request->params = [];
         }
