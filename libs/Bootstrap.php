@@ -12,6 +12,7 @@ class Bootstrap
     public function loadController()
     {
         $name = $this->request->controller;
+        var_dump($name);die;
         $controller = new $name();
         return $controller;
     }
