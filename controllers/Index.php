@@ -13,7 +13,9 @@ class Index extends Controller
         $params = parse_url($params,PHP_URL_QUERY );
         parse_str($params, $query);
         $page = isset($query['page'])?$query['page']:null;
-        $tasks = $this->model->getTasksPaginated($page);
+        $field = isset($query['field'])?$query['field']:null;
+        $sort = isset($query['sort'])?$query['sort']:null;
+        $tasks = $this->model->getTasksPaginated($page,$field,$sort);
         $tasks['current_page'] = isset($query['page'])?$query['page']:1;
         $this->view->render('index'.DS.'index',compact('tasks'));
     }

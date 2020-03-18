@@ -32,23 +32,6 @@
     <?php }?>
 </table>
 <br />
-<div class="text-center">
-    <ul class="pagination pagination-lg">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li class="disabled"><span>...</span></li>
-        <li><a href="#">12</a></li>
-        <li><a href="#">13</a></li>
-        <li><a href="#">14</a></li>
-        <li><a href="#">15</a></li>
-        <li><a href="#">16</a></li>
-        <li><a href="#">&raquo;</a></li>
-    </ul>
-</div>
 <div id="taskModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-header">

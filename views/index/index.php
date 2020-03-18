@@ -6,10 +6,10 @@
 <br />
 <table class="table table-bordered table-striped">
     <tr>
-        <th width=\"40%\">Name</th>
-        <th width=\"10%\">Email</th>
+        <th width=\"40%\">Name <a href="index?page=<?php echo $tasks['current_page']?>&field=name&sort=ASC" class='fa fa-arrow-up <?php if ($tasks['field']!='name' || $tasks['sort']!='ASC')echo 'ui-priority-secondary'?>'></a><a href="index?page=<?php echo $tasks['current_page']?>&field=name&sort=DESC" class='fa fa-arrow-down <?php if ($tasks['field']!='name' || $tasks['sort']!='DESC')echo 'ui-priority-secondary'?>'></a></th>
+        <th width=\"10%\">Email <a href="index?page=<?php echo $tasks['current_page']?>&field=email&sort=ASC" class='fa fa-arrow-up <?php if ($tasks['field']!='email' || $tasks['sort']!='ASC')echo 'ui-priority-secondary'?>'></a><a href="index?page=<?php echo $tasks['current_page']?>&field=email&sort=DESC" class='fa fa-arrow-down <?php if ($tasks['field']!='email' || $tasks['sort']!='DESC')echo 'ui-priority-secondary'?>'></a></th>
         <th width=\"10%\">Text</th>
-        <th width=\"10%\">Status</th>
+        <th width=\"10%\">Status <a href="index?page=<?php echo $tasks['current_page']?>&field=status&sort=ASC" class='fa fa-arrow-up <?php if ($tasks['field']!='status' || $tasks['sort']!='ASC')echo 'ui-priority-secondary'?>'></a><a href="index?page=<?php echo $tasks['current_page']?>&field=status&sort=DESC" class='fa fa-arrow-down <?php if ($tasks['field']!='status' || $tasks['sort']!='DESC')echo 'ui-priority-secondary'?>'></a></th>
     </tr>
 <?php foreach($tasks['tasks'] as $task) {?>
     <tr>
@@ -24,14 +24,17 @@
 <?php if ($tasks['total_pages']>1){ ?>
 <div class="text-center">
 <ul class="pagination">
-    <li><a href="index?page=1">First</a></li>
+    <li><a href="index?page=1<?php if (isset($tasks['field']) && isset($tasks['sort']))echo "&field=".$tasks['field']."&sort=".$tasks['sort']; ?>">First</a></li>
     <li class="<?php if($tasks['current_page'] <= 1){ echo 'disabled'; } ?>">
-        <a href="<?php if($tasks['current_page'] <= 1){ echo '#'; } else { echo "index?page=".($tasks['current_page'] - 1); } ?>">Prev</a>
+        <a href="<?php if($tasks['current_page'] <= 1){ echo '#'; } else { echo "index?page=".($tasks['current_page'] - 1);if (isset($tasks['field']) && isset($tasks['sort']))echo "&field=".$tasks['field']."&sort=".$tasks['sort']; } ?>">&lt;</a>
+    </li>
+    <li class="disabled">
+        <a href="#"><?php echo $tasks['current_page'] ?></a>
     </li>
     <li class="<?php if($tasks['current_page'] >= $tasks['total_pages']){ echo 'disabled'; } ?>">
-        <a href="<?php if($tasks['current_page'] >= $tasks['total_pages']){ echo '#'; } else { echo "index?page=".($tasks['current_page'] + 1); } ?>">Next</a>
+        <a href="<?php if($tasks['current_page'] >= $tasks['total_pages']){ echo '#'; } else { echo "index?page=".($tasks['current_page'] + 1);if (isset($tasks['field']) && isset($tasks['sort']))echo "&field=".$tasks['field']."&sort=".$tasks['sort'];} ?>">&gt;</a>
     </li>
-    <li><a href="index?page=<?php echo $tasks['total_pages']; ?>">Last</a></li>
+    <li><a href="index?page=<?php echo $tasks['total_pages'];if (isset($tasks['field']) && isset($tasks['sort']))echo "&field=".$tasks['field']."&sort=".$tasks['sort']; ?>">Last</a></li>
 </ul>
 </div>
 <?php }?>
