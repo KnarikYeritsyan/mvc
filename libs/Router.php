@@ -13,6 +13,7 @@ class Router
         else {
             $url = explode('/', $url);
             $controller = 'controllers\\' . ucfirst($url[0]);
+            var_dump($controller);die;
             if (class_exists($controller)) {
                 $request->controller = '\controllers\\'.ucfirst($url[0]);
                 if (isset($url[1])) {
