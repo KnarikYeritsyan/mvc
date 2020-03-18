@@ -12,12 +12,7 @@ class Router
         }
         else {
             $url = explode('/', $url);
-            $controller = 'controllers\\' . ucfirst($url[0]);
-            var_dump(class_exists('\Login'));
-            var_dump(class_exists('\controllers\Login'));
-            var_dump(class_exists('Index'));
-            var_dump(class_exists('controllers\Index'));die;
-            if (class_exists($controller)) {
+            if (file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0]))) {
                 $request->controller = '\controllers\\'.ucfirst($url[0]);
                 if (isset($url[1])) {
                     if (method_exists($request->controller,$url[1])) {
@@ -48,7 +43,7 @@ class Router
                 }
             }else{
                 if (strpos($url[0],'?')){
-                    if (class_exists('\controllers\\'.strtok(ucfirst($url[0]),'?'))) {
+                    if (file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.strtok(ucfirst($url[0]),'?'))) {
                         $request->controller = '\controllers\\'.strtok(ucfirst($url[0]),'?');
                         $request->action = 'index';
                         $request->params = array(strstr($url[0],'?'));
