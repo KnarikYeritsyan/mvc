@@ -12,7 +12,8 @@ class Bootstrap
     public function loadController()
     {
         $name = $this->request->controller;
-        var_dump($name);die;
+//        var_dump($name);die;
+        require_once $_SERVER['DOCUMENT_ROOT'].'/'.$name.'.php';
         $controller = new $name();
         return $controller;
     }
