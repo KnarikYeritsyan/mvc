@@ -14,7 +14,7 @@ class Router
             $url = explode('/', $url);
             $controller = 'controllers\\' . ucfirst($url[0]);
             var_dump(class_exists('Login'));
-            var_dump(class_exists('controllers\Login'));
+            var_dump(class_exists('\controllers\Login'));
             var_dump(class_exists('Index'));
             var_dump(class_exists('controllers\Index'));die;
             if (class_exists($controller)) {
