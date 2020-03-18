@@ -1,5 +1,7 @@
 <?php
 $baseDir = dirname(__FILE__, 2);
+var_dump($baseDir);
+var_dump($_SERVER['DOCUMENT_ROOT']);die;
 $files = array (
     'file_paths' => $baseDir  . '/config/paths.php',
     'file_database' => $baseDir . '/config/database.php',
