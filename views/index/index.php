@@ -11,7 +11,7 @@
         <th width=\"10%\">Text</th>
         <th width=\"10%\">Status</th>
     </tr>
-<?php foreach($tasks as $task) {?>
+<?php foreach($tasks['tasks'] as $task) {?>
     <tr>
         <td><?php echo $task['name']?></td>
         <td><?php echo $task['email'] ?></td>
@@ -21,6 +21,20 @@
 <?php }?>
 </table>
 <br />
+<?php if ($tasks['total_pages']>1){ ?>
+<div class="text-center">
+<ul class="pagination">
+    <li><a href="index?page=1">First</a></li>
+    <li class="<?php if($tasks['current_page'] <= 1){ echo 'disabled'; } ?>">
+        <a href="<?php if($tasks['current_page'] <= 1){ echo '#'; } else { echo "index?page=".($tasks['current_page'] - 1); } ?>">Prev</a>
+    </li>
+    <li class="<?php if($tasks['current_page'] >= $tasks['total_pages']){ echo 'disabled'; } ?>">
+        <a href="<?php if($tasks['current_page'] >= $tasks['total_pages']){ echo '#'; } else { echo "index?page=".($tasks['current_page'] + 1); } ?>">Next</a>
+    </li>
+    <li><a href="index?page=<?php echo $tasks['total_pages']; ?>">Last</a></li>
+</ul>
+</div>
+<?php }?>
 <div id="taskModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-header">

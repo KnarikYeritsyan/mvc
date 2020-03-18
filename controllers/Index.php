@@ -8,9 +8,13 @@ class Index extends Controller
         parent::__construct();
         $this->model= new \Task_Model();
     }
-    function index()
+    function index($params=null)
     {
-        $tasks = $this->model->getAllTasks();
+        $params = parse_url($params,PHP_URL_QUERY );
+        parse_str($params, $query);
+        $page = isset($query['page'])?$query['page']:null;
+        $tasks = $this->model->getTasksPaginated($page);
+        $tasks['current_page'] = isset($query['page'])?$query['page']:1;
         $this->view->render('index'.DS.'index',compact('tasks'));
     }
     function create()

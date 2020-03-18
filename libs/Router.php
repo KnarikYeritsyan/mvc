@@ -42,9 +42,21 @@ class Router
                     $request->params = [];
                 }
             }else{
-                $request->controller = '\controllers\Errorview';
-                $request->action = 'index';
-                $request->params = [];
+                if (strpos($url[0],'?')){
+                    if (class_exists('\controllers\\'.strtok(ucfirst($url[0]),'?'))) {
+                        $request->controller = '\controllers\\'.strtok(ucfirst($url[0]),'?');
+                        $request->action = 'index';
+                        $request->params = array(strstr($url[0],'?'));
+                    }else{
+                        $request->controller = '\controllers\Errorview';
+                        $request->action = 'index';
+                        $request->params = [];
+                    }
+                }else {
+                    $request->controller = '\controllers\Errorview';
+                    $request->action = 'index';
+                    $request->params = [];
+                }
             }
         }
     }

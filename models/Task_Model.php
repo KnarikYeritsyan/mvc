@@ -11,6 +11,19 @@ class Task_Model extends Model
         $query->execute();
         return $query->fetchAll();
     }
+    public function getTasksPaginated($page = null)
+    {
+        $page = isset($page) && is_numeric($page) ? $page : 1;
+        $perPage = 3;
+        $startAt = $perPage * ($page - 1);
+        $total_rows = $this->db->query('SELECT * FROM tasks')->rowCount();
+        $total_pages = ceil($total_rows/$perPage);
+        $query = $this->db->prepare("SELECT * FROM tasks LIMIT ".$startAt.", ".$perPage);
+        $query->execute();
+        $tasks['tasks'] = $query->fetchAll();
+        $tasks['total_pages'] = $total_pages;
+        return $tasks;
+    }
     public function showTask($id)
     {
         $query = $this->db->prepare("SELECT * FROM tasks WHERE id =" . $id);
@@ -51,5 +64,4 @@ class Task_Model extends Model
             'status' => $data['status'],
         ]);
     }
-
 }
