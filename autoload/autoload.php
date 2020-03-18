@@ -1,7 +1,7 @@
 <?php
 $baseDir = dirname(__FILE__, 2);
-var_dump($baseDir);
-var_dump($_SERVER['DOCUMENT_ROOT']);die;
+//var_dump($baseDir);
+//var_dump($_SERVER['DOCUMENT_ROOT']);die;
 $files = array (
     'file_paths' => $baseDir  . '/config/paths.php',
     'file_database' => $baseDir . '/config/database.php',
@@ -20,6 +20,7 @@ spl_autoload_register(function ($className) {
         }
     }
     $file_namespace = $_SERVER['DOCUMENT_ROOT'].'/'.$className.'.php';
+    var_dump($file_namespace);die;
     if (file_exists($file_namespace)){
         require_once $file_namespace;
     }
