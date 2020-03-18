@@ -13,7 +13,7 @@ class Bootstrap
     {
         $name = $this->request->controller;
 //        var_dump($name);die;
-        require_once $_SERVER['DOCUMENT_ROOT'].'/'.$name.'.php';
+        require_once $_SERVER['DOCUMENT_ROOT'].str_replace('\\','/',$name).'.php';
         $controller = new $name();
         return $controller;
     }
