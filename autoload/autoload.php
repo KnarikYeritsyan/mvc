@@ -20,7 +20,7 @@ spl_autoload_register(function ($className) {
         }
     }
     $file_namespace = $_SERVER['DOCUMENT_ROOT'].'/'.$className.'.php';
-    var_dump($file_namespace);die;
+//    var_dump($file_namespace);die;
     if (file_exists($file_namespace)){
         require_once $file_namespace;
     }
