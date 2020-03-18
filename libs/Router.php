@@ -23,12 +23,12 @@ class Router
                                 $request->action = strtok($url[1],'?');
                                 $request->params = strstr($url[1],'?');
                             }else{
-                                $request->controller = 'Errorview';
+                                $request->controller = '\controllers\Errorview';
                                 $request->action = 'index';
                                 $request->params = [];
                             }
                         }else {
-                            $request->controller = 'Errorview';
+                            $request->controller = '\controllers\Errorview';
                             $request->action = 'index';
                             $request->params = [];
                         }

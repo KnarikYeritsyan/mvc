@@ -15,7 +15,6 @@ class Bootstrap
         require_once $_SERVER['DOCUMENT_ROOT'].'/controllers/Controller.php';
         require_once $_SERVER['DOCUMENT_ROOT'].str_replace('\\','/',$name).'.php';
         $controller = new $name();
-//        $controller = new \controllers\Index();
         return $controller;
     }
 }
