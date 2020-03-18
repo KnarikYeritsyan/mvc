@@ -13,7 +13,7 @@ class Router
         else {
             $url = explode('/', $url);
             var_dump($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0]));
-            var_dump(file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0])));
+            var_dump(file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0])));die;
             if (file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0]))) {
                 $request->controller = '\controllers\\'.ucfirst($url[0]);
                 if (isset($url[1])) {
