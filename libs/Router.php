@@ -12,7 +12,8 @@ class Router
         }
         else {
             $url = explode('/', $url);
-            if (class_exists('\controllers\\'.ucfirst($url[0]))) {
+            $controller = 'controllers\\' . ucfirst($url[0]);
+            if (class_exists($controller)) {
                 $request->controller = '\controllers\\'.ucfirst($url[0]);
                 if (isset($url[1])) {
                     if (method_exists($request->controller,$url[1])) {
