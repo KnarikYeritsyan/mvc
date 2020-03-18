@@ -6,7 +6,7 @@ class Router
         $url = rtrim(ltrim($url,'/'),'/');
         if ($url == '')
         {
-            $request->controller = "/controllers/Index";
+            $request->controller = "Index";
             $request->action = "index";
             $request->params = [];
         }
@@ -23,12 +23,12 @@ class Router
                                 $request->action = strtok($url[1],'?');
                                 $request->params = strstr($url[1],'?');
                             }else{
-                                $request->controller = '\controllers\Errorview';
+                                $request->controller = 'Errorview';
                                 $request->action = 'index';
                                 $request->params = [];
                             }
                         }else {
-                            $request->controller = '\controllers\Errorview';
+                            $request->controller = 'Errorview';
                             $request->action = 'index';
                             $request->params = [];
                         }
