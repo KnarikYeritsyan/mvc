@@ -15,9 +15,9 @@ class Router
             if (file_exists($_SERVER['DOCUMENT_ROOT'].'/controllers/'.ucfirst($url[0]).'.php')) {
                 $request->controller = '\controllers\\'.ucfirst($url[0]);
                 if (isset($url[1])) {
-                    if (method_exists($request->controller,$url[1])) {
+//                    if (method_exists($request->controller,$url[1])) {
                         $request->action = $url[1];
-                    }else{
+                    /*}else{
                         if (strpos($url[1],'?')){
                             if (method_exists($request->controller,strtok($url[1],'?'))) {
                                 $request->action = strtok($url[1],'?');
@@ -32,7 +32,7 @@ class Router
                             $request->action = 'index';
                             $request->params = [];
                         }
-                    }
+                    }*/
                 } else {
                     $request->action = 'index';
                 }
