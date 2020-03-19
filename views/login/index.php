@@ -25,7 +25,7 @@
         </div>
     </form>
 </div>
-<script>
+<!--<script>
     $(document).ready(function () {
         $('#MyForm').submit(function (event) {
             event.preventDefault();
@@ -34,7 +34,7 @@
             if ($.trim(username).length > 0 && $.trim(password).length > 0)
             {
                 $.ajax({
-                    url:"<?php echo URL; ?>login/auth",
+                    url:"<?php /*echo URL; */?>login/auth",
                     method:"POST",
                     data:{username:username, password:password},
                     cashe:false,
@@ -42,7 +42,7 @@
                         if (data)
                         {
                             $("body").hide();
-                            window.location.href= "<?php echo URL; ?>dashboard";
+                            window.location.href= "<?php /*echo URL; */?>dashboard";
                         }
                         else
                         {
@@ -65,4 +65,4 @@
             }
         });
     });
-</script>
+</script>-->
