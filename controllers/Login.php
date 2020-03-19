@@ -21,7 +21,7 @@ class Login extends Controller
                 $data = $this->model->get_user(\Session::get('user_id'));
                 $this->view->render('dashboard/index',compact('data'));
             }else{
-                return false;
+                return 'model not loaded';
             }
         }else{
             return false;
