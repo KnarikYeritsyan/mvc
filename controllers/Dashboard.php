@@ -47,6 +47,9 @@ class Dashboard extends Controller
 
     function logout()
     {
+        $user = new \Login_Model();
+        $id = \Session::get('user_id');
+        $user->db_logout($id);
         \Session::destroy();
         header('location: ' . URL . 'login');
         exit;

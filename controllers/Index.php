@@ -6,6 +6,7 @@ class Index extends Controller
     function __construct()
     {
         parent::__construct();
+        \Session::init();
         $this->model= new \Task_Model();
     }
     function index($params=null)
@@ -18,6 +19,21 @@ class Index extends Controller
         $tasks = $this->model->getTasksPaginated($page,$field,$sort);
         $tasks['current_page'] = isset($query['page'])?$query['page']:1;
         $this->view->render('index'.DS.'index',compact('tasks'));
+    }
+    function check()
+    {
+        $tab_id = $this->secure_input($_POST['tab_id']);
+        $id = \Session::get('user_id');
+        if (!is_null($id)){
+            $user = new \Login_Model();
+            if ($user->check_tab(\Session::get('user_id'),$tab_id)){
+                echo 'yes tab';
+            }else{
+                echo 'no tab';
+            }
+        }else{
+            echo 'no session';
+        }
     }
     function create()
     {

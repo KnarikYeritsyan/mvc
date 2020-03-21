@@ -31,16 +31,18 @@
             event.preventDefault();
             var username = $('#username').val();
             var password = $('#password').val();
+            var tab_id = btoa(Math.random()).slice(0,20);
             if ($.trim(username).length > 0 && $.trim(password).length > 0)
             {
                 $.ajax({
                     url:"<?php echo URL; ?>login/auth",
                     method:"POST",
-                    data:{username:username, password:password},
+                    data:{username:username, password:password,tab_id:tab_id},
                     cashe:false,
                     success:function (data) {
                         if (data)
                         {
+                            sessionStorage.setItem("tab",tab_id);
                             $("body").hide();
                             window.location.href= "<?php echo URL; ?>dashboard";
                         }
