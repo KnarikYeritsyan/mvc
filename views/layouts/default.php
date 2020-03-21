@@ -11,44 +11,50 @@
     <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery-ui.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>public/bootstrap/js/bootstrap.min.js"></script>
     <script>
-        window.onload = function () {
+        function check_login() {
             var tab_id = sessionStorage.getItem("tab");
-                $.ajax({
-                    url: "<?php echo URL; ?>index/check",
-                    method: "POST",
-                    data: {tab_id:tab_id},
-                    success: function (data) {
-                        console.log(data)
-                        if(data == 'yes tab'){
-                            if(window.location.href == "<?php echo URL; ?>login"){
-                                window.location.href= "<?php echo URL; ?>dashboard";
-                            }
-                            $('#login-div').html(
-                                '            <a class="navbar-brand" href="<?php echo URL; ?>dashboard">Admin</a>' +
-                                '            <ul class="nav navbar-nav navbar-left">' +
-                                '            <li class="dropdown">' +
-                                '                <a href="#" class="dropdown-toggle"' +
-                                '                   data-toggle="dropdown">Log out<b class="caret"></b>' +
-                                '                    <ul class="dropdown-menu">' +
-                                '                        <li><a onclick="event.preventDefault();sessionStorage.clear();document.getElementById(\'logout-form\').submit();" href="<?php echo URL; ?>dashboard/logout">Log out</a></li>' +
-                                '                        <form id="logout-form" action="dashboard/logout" method="POST" style="display: none;">' +
-                                '                        </form>' +
-                                '                    </ul>' +
-                                '                </a>' +
-                                '            </li>' +
-                                '        </ul>'
-                            )
-                        }else {
-                            if(window.location.href == "<?php echo URL; ?>dashboard"){
-                                window.location.href= "<?php echo URL; ?>login";
-                            }
-                            $('#login-div').html(
-                                '<a class="navbar-brand" href="<?php echo URL; ?>login">Login</a>'
-                            )
+            $.ajax({
+                url: "<?php echo URL; ?>index/check",
+                method: "POST",
+                data: {tab_id:tab_id},
+                success: function (data) {
+                    console.log(data)
+                    if(data == 'yes tab'){
+                        if(window.location.href == "<?php echo URL; ?>login"){
+                            window.location.href= "<?php echo URL; ?>dashboard";
                         }
+                        $('#login-div').html(
+                            '            <a class="navbar-brand" href="<?php echo URL; ?>dashboard">Admin</a>' +
+                            '            <ul class="nav navbar-nav navbar-left">' +
+                            '            <li class="dropdown">' +
+                            '                <a href="#" class="dropdown-toggle"' +
+                            '                   data-toggle="dropdown">Log out<b class="caret"></b>' +
+                            '                    <ul class="dropdown-menu">' +
+                            '                        <li><a onclick="event.preventDefault();sessionStorage.clear();document.getElementById(\'logout-form\').submit();" href="<?php echo URL; ?>dashboard/logout">Log out</a></li>' +
+                            '                        <form id="logout-form" action="dashboard/logout" method="POST" style="display: none;">' +
+                            '                        </form>' +
+                            '                    </ul>' +
+                            '                </a>' +
+                            '            </li>' +
+                            '        </ul>'
+                        )
+                    }else {
+                        if(window.location.href == "<?php echo URL; ?>dashboard"){
+                            window.location.href= "<?php echo URL; ?>login";
+                        }
+                        $('#login-div').html(
+                            '<a class="navbar-brand" href="<?php echo URL; ?>login">Login</a>'
+                        )
                     }
+                }
             })
         }
+        window.onload = function () {
+            check_login();
+        };
+        setInterval(function(){
+            check_login()
+        }, 5000);
     </script>
 </head>
 <nav class="navbar navbar-default navbar-fixed-top">
